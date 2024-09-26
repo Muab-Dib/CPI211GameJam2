@@ -3,7 +3,6 @@ using UnityEngine;
 public class Crouch : MonoBehaviour
 {
     public KeyCode key = KeyCode.LeftControl;
-
     [Header("Slow Movement")]
     [Tooltip("Movement to slow down when crouched.")]
     public FirstPersonMovement movement;

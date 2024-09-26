@@ -338,6 +338,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 290977201}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &321501970 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1773623360729482, guid: 11aaea5348574644a9eb4f4504fcce3f, type: 3}
+  m_PrefabInstance: {fileID: 1147770400}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &321501977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321501970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccbc77cb91be5fb4a815a32e7e3516eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrHealth: 3
 --- !u!1 &484782065
 GameObject:
   m_ObjectHideFlags: 0
@@ -1188,7 +1206,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1773623360729482, guid: 11aaea5348574644a9eb4f4504fcce3f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 321501977}
   m_SourcePrefab: {fileID: 100100000, guid: 11aaea5348574644a9eb4f4504fcce3f, type: 3}
 --- !u!1 &1241333598
 GameObject:
@@ -1342,7 +1363,7 @@ GameObject:
   - component: {fileID: 1480204271}
   - component: {fileID: 1480204273}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: Monster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1495,6 +1516,7 @@ MonoBehaviour:
   minChaseTime: 10
   maxChaseTime: 20
   jumpscareTime: 2
+  dist: 0
   walking: 0
   chasing: 0
   player: {fileID: 171800796}

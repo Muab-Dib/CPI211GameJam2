@@ -9,9 +9,10 @@ public class chaserAi : MonoBehaviour
     public NavMeshAgent ai;
     public List<Transform> destinations; //our list of nodes which you can manually drag into the unity editor when you set up a node.
     public Animator aiAnim;
-    public float walkSpeed, chaseSpeed, minIdleTime=2, maxIdleTime=9, idleTime, raycastDistance, catchDistance, chaseTime, minChaseTime=10, maxChaseTime=20, jumpscareTime;
+    public float walkSpeed, chaseSpeed, minIdleTime=2, maxIdleTime=9, idleTime, raycastDistance, catchDistance, chaseTime, minChaseTime=10, maxChaseTime=20, jumpscareTime, dist;
     public bool walking, chasing;
     public Transform player;
+    private int PlayerNoiseLvl;
     Transform currentDest;
     Vector3 dest; // destionation postion.
     int destinationChoice; //self explanatory
@@ -24,11 +25,13 @@ public class chaserAi : MonoBehaviour
         walking = true;
         destinationChoice = Random.Range(0, destinationAmount); //monster choosing node
         currentDest = destinations[destinationChoice]; //setting that node to the monsters destination
-
+        
     }
     private void Update()
     {
-        Vector3 direction = (player.position - transform.position).normalized; 
+        Vector3 direction = (player.position - transform.position).normalized;
+        PlayerNoiseLvl = player.root.GetComponent<FirstPersonMovement>().noiseLvl;
+        dist = Vector3.Distance(player.position, transform.position);
         RaycastHit hit;
         if(Physics.Raycast(transform.position + rayCastOffset, direction, out hit, raycastDistance)) //Monsters eyes
         {
@@ -39,7 +42,7 @@ public class chaserAi : MonoBehaviour
                 StopCoroutine("chaseRoutine");
                 StartCoroutine("chaseRoutine");
                 chasing = true;
-
+                
                 if (!scary.isPlaying)
                 {
                     scary.Play();
@@ -71,13 +74,24 @@ public class chaserAi : MonoBehaviour
         {
             dest = currentDest.position; // sets the new position for monster when it chooses a node.
             ai.destination = dest;
+            // here the monster will investigate any noises that have been made, checking the player's last known position when it was alerted of the noise.
+            // TODO: Have it so that it resumes its regular patrol once its done investigating.
+            if (dist < PlayerNoiseLvl)
+            {
+                walking = false;
+                Debug.Log("Investigating");
+                dest = player.position;
+                ai.destination = dest;
+            }
+
+            Debug.Log("Exitted investigation");
             ai.speed = walkSpeed;
             aiAnim.ResetTrigger("chase"); //reset animations
             aiAnim.ResetTrigger("idle");
             aiAnim.SetTrigger("walk"); //making walk animation play (make sure while in state machine names align)
             if (ai.remainingDistance <= ai.stoppingDistance)
             {
-
+                Debug.Log("Entered if here");
                 aiAnim.ResetTrigger("chase"); //stops animations when reaching a node (fail safe to make sure idle animation plays)
                 aiAnim.ResetTrigger("walk");
                 aiAnim.SetTrigger("idle");
