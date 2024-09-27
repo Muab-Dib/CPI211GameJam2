@@ -29,6 +29,21 @@ public class FirstPersonMovement : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
     }
 
+    public void takeDamage()
+    {
+        if(CurrHealth > 0)
+        {
+            CurrHealth--;
+            checkHP();
+        }
+    }
+    private void checkHP()
+    {
+        if(CurrHealth <= 0)
+        {
+            gameObject.SetActive(false);
+        }
+    }
     void FixedUpdate()
     {
         // Update IsRunning from input.

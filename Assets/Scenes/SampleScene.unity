@@ -355,7 +355,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccbc77cb91be5fb4a815a32e7e3516eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrHealth: 3
 --- !u!1 &484782065
 GameObject:
   m_ObjectHideFlags: 0
@@ -1364,7 +1363,7 @@ GameObject:
   - component: {fileID: 1480204273}
   m_Layer: 0
   m_Name: Monster
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1517,8 +1516,12 @@ MonoBehaviour:
   maxChaseTime: 20
   jumpscareTime: 2
   dist: 0
+  investigateTime: 0
+  minInvestigateTime: 0
+  maxInvestigateTime: 0
   walking: 0
   chasing: 0
+  investigating: 0
   player: {fileID: 171800796}
   destinationAmount: 6
   rayCastOffset: {x: 0, y: 0, z: 0}
