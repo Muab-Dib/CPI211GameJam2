@@ -69,7 +69,7 @@ public class FirstPersonController : MonoBehaviour
     public KeyCode sprintKey = KeyCode.LeftShift;
     public float sprintSpeed = 7f;
     public float sprintDuration = 5f;
-    public float sprintCooldown = .5f;
+    public float sprintCooldown = 50f;
     public float sprintFOV = 80f;
     public float sprintFOVStepTime = 10f;
 
@@ -83,7 +83,7 @@ public class FirstPersonController : MonoBehaviour
 
     // Internal Variables
     private CanvasGroup sprintBarCG;
-    private bool isSprinting = false;
+    public bool isSprinting = false;
     private float sprintRemaining;
     private float sprintBarWidth;
     private float sprintBarHeight;
@@ -284,7 +284,7 @@ public class FirstPersonController : MonoBehaviour
                 // Drain sprint remaining while sprinting
                 if(!unlimitedSprint)
                 {
-                    sprintRemaining -= 1 * Time.deltaTime;
+                    sprintRemaining -= 0.5f * Time.deltaTime;
                     if (sprintRemaining <= 0)
                     {
                         isSprinting = false;
@@ -295,7 +295,7 @@ public class FirstPersonController : MonoBehaviour
             else
             {
                 // Regain sprint while not sprinting
-                sprintRemaining = Mathf.Clamp(sprintRemaining += 1 * Time.deltaTime, 0, sprintDuration);
+                sprintRemaining = Mathf.Clamp(sprintRemaining += 0.1f * Time.deltaTime, 0, sprintDuration);
             }
 
             // Handles sprint cooldown 
@@ -303,7 +303,7 @@ public class FirstPersonController : MonoBehaviour
             if(isSprintCooldown)
             {
                 sprintCooldown -= 1 * Time.deltaTime;
-                if (sprintCooldown <= 0)
+                if (sprintCooldown <= 0&&sprintRemaining>=1.5)
                 {
                     isSprintCooldown = false;
                 }

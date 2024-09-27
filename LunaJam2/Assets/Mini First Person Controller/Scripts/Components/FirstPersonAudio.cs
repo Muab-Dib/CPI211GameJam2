@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class FirstPersonAudio : MonoBehaviour
 {
-    public FirstPersonMovement character;
+    public FirstPersonController character;
     public GroundCheck groundCheck;
 
     [Header("Step")]
@@ -35,7 +35,7 @@ public class FirstPersonAudio : MonoBehaviour
     void Reset()
     {
         // Setup stuff.
-        character = GetComponentInParent<FirstPersonMovement>();
+        character = GetComponentInParent<FirstPersonController>();
         groundCheck = (transform.parent ?? transform).GetComponentInChildren<GroundCheck>();
         stepAudio = GetOrCreateAudioSource("Step Audio");
         runningAudio = GetOrCreateAudioSource("Running Audio");
@@ -72,7 +72,7 @@ public class FirstPersonAudio : MonoBehaviour
             {
                 SetPlayingMovingAudio(crouchedAudio);
             }
-            else if (character.IsRunning)
+            else if (character.isSprinting)
             {
                 SetPlayingMovingAudio(runningAudio);
             }
