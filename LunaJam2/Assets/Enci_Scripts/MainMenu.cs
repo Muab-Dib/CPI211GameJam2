@@ -7,10 +7,10 @@ public class MainMenu : MonoBehaviour
 {
     public void Play()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         
         // alternate way to call a particular screen
-        // SceneManager.LoadScene("name of screen");
+        SceneManager.LoadScene("SampleScene");
     }
 
     public void Quit()
