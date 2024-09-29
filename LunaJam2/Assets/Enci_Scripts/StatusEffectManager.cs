@@ -5,6 +5,7 @@ using UnityEngine;
 public class StatusEffectManager : MonoBehaviour
 {
     public GameObject boostUpEffect;
+    public FirstPersonController fpsModular;
     public bool isBostedUp;
     private float duration;
 
@@ -28,5 +29,8 @@ public class StatusEffectManager : MonoBehaviour
 
         isBostedUp=false;
         boostUpEffect.SetActive(false);
+        fpsModular.boostSpeedReset();
+        Debug.Log("speed reseted");
+
     }
 }

@@ -28,16 +28,16 @@ public class Medicine_Boost : MonoBehaviour
         medicineText.text = "Medicines: "+medicines.ToString();
 
 
-        if(Input.GetButtonDown("boost")&&medicines>=1&&fpsModular.powerupEnabled==false)
+        if(Input.GetButtonDown("boost")&&medicines>=1&&effectManager.isBostedUp==false)
         {
             medicines -= 1;
             PowerUp();
         }
-        if ((Input.GetButtonDown("boost") && medicines >= 0)||fpsModular.powerupEnabled==true)
+        if ((Input.GetButtonDown("boost") && medicines >= 0)||effectManager.isBostedUp==true)
         {
             return;
         }
-
+        
 
     }
 
@@ -46,14 +46,8 @@ public class Medicine_Boost : MonoBehaviour
     public void PowerUp()
     {
         effectManager.StartBoostEffect(powerUpDuration);
-        fpsModular.powerupEnabled=true;
-        fpsModular.walkSpeed=15f;
-        fpsModular.sprintSpeed=20f;
+        fpsModular.boostSpeedChange();
         
-        
-        fpsModular.walkSpeed=5f;
-        fpsModular.sprintSpeed=7f;
-        fpsModular.powerupEnabled=false;
+        Debug.Log("speed boost");
     }
-    
 }

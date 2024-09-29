@@ -21,7 +21,7 @@ public class Damage : MonoBehaviour
     void OnCollisionEnter(Collision collision){
         if(collision.gameObject.tag=="Player")
         {
-            playerHealth.TakeDamage(50);
+            // playerHealth.TakeDamage(50);
         }
     }
 }

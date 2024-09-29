@@ -153,8 +153,8 @@ public class FirstPersonController : MonoBehaviour
 
     public void boostSpeedChange()
     {
-        walkSpeed*=2;
-        sprintSpeed*=2;
+        walkSpeed*=3;
+        sprintSpeed*=3;
     }
 
     public void boostSpeedReset()

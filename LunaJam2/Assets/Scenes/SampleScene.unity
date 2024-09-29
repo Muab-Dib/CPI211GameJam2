@@ -387,6 +387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boostUpEffect: {fileID: 176796185}
+  fpsModular: {fileID: 47449268}
   isBostedUp: 0
 --- !u!1 &354499821
 GameObject:
