@@ -62,6 +62,8 @@ public class FirstPersonController : MonoBehaviour
     // Internal Variables
     private bool isWalking = false;
 
+    public bool powerupEnabled = false;
+
     #region Sprint
 
     public bool enableSprint = true;
@@ -69,7 +71,7 @@ public class FirstPersonController : MonoBehaviour
     public KeyCode sprintKey = KeyCode.LeftShift;
     public float sprintSpeed = 7f;
     public float sprintDuration = 5f;
-    public float sprintCooldown = 50f;
+    public float sprintCooldown = 20f;
     public float sprintFOV = 80f;
     public float sprintFOVStepTime = 10f;
 
@@ -147,6 +149,18 @@ public class FirstPersonController : MonoBehaviour
             sprintRemaining = sprintDuration;
             sprintCooldownReset = sprintCooldown;
         }
+    }
+
+    public void boostSpeedChange()
+    {
+        walkSpeed*=2;
+        sprintSpeed*=2;
+    }
+
+    public void boostSpeedReset()
+    {
+        walkSpeed=5f;
+        sprintSpeed=7f;
     }
 
     void Start()
@@ -295,7 +309,7 @@ public class FirstPersonController : MonoBehaviour
             else
             {
                 // Regain sprint while not sprinting
-                sprintRemaining = Mathf.Clamp(sprintRemaining += 0.1f * Time.deltaTime, 0, sprintDuration);
+                sprintRemaining = Mathf.Clamp(sprintRemaining += 1 * Time.deltaTime, 0, sprintDuration);
             }
 
             // Handles sprint cooldown 
@@ -384,7 +398,7 @@ public class FirstPersonController : MonoBehaviour
                 isWalking = false;
             }
 
-            // All movement calculations shile sprint is active
+            // All movement calculations while sprint is active
             if (enableSprint && Input.GetKey(sprintKey) && sprintRemaining > 0f && !isSprintCooldown)
             {
                 targetVelocity = transform.TransformDirection(targetVelocity) * sprintSpeed;

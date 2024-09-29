@@ -40,9 +40,11 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public void heal(int amount)
-    {
-        health += amount;
-        UpdateHealth();
-    }
+    // public void heal(int amount)
+    // {
+    //     health += amount;
+    //     UpdateHealth();
+    // }
+
+    
 }

@@ -39,7 +39,7 @@ public class Medicine_PickUp : MonoBehaviour
     {
         if(Input.GetButtonDown("Interact")&&inReach)
         {
-            player.GetComponent<Medicine_Heal>().medicines += 1;
+            player.GetComponent<Medicine_Boost>().medicines += 1;
             inReach=false;
             pickUpText.SetActive(false);
             Destroy(gameObject);
